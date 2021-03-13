@@ -1,0 +1,14 @@
+.swith_button {
+  position: absolute;
+  z-index: 99999;
+  top: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #222;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 23px;
+  text-decoration: none;
+  left: 70px;
+}

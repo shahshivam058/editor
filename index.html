@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>0. Design</title>
+    <link
+      type="text/css"
+      href="./dist/tui-color-picker.css"
+      rel="stylesheet"
+    />
+    <link type="text/css" href="./dist/tui-image-editor.css" rel="stylesheet" />
+    <link type="text/css" href="./dist/my.css" rel="stylesheet" />
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tui-image-editor-container"></div>
+    <a href="./mobile.html" class="swith_button"> Mobile </a>
+    <script
+      type="text/javascript"
+      src="./dist/fabric-v4.2.0.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./dist/tui-code-snippet.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./dist/tui-color-picker.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./dist/FileSaver.min.js"
+    ></script>
+    <script type="text/javascript" src="./dist/tui-image-editor.js"></script>
+    <script type="text/javascript" src="js/theme/white-theme.js"></script>
+    <script type="text/javascript" src="js/theme/black-theme.js"></script>
+    <script>
+      var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
+        includeUI: {
+          loadImage: {
+            path: 'img/sample.png',
+            name: 'SampleImage',
+          },
+          menu: ['text', 'mask', 'crop', 'flip', 'rotate', 'draw', 'shape', 'icon', 'filter'],
+          theme: blackTheme,
+          initMenu: 'text',
+          menuBarPosition: 'left',
+        },
+        cssMaxWidth: 700,
+        cssMaxHeight: 500,
+        usageStatistics: false,
+      });
+      window.onresize = function () {
+        imageEditor.ui.resizeEditor();
+      };
+    </script>
+  </body>
+</html>
