@@ -9346,11 +9346,11 @@ var Zoom = function (_Component) {
         return;
       }
 
-      if (e.keyCode === _consts.keyCodes.SPACE) {
-        e.preventDefault();
-        this.withSpace = true;
-        this.startHandMode();
-      }
+      // if (e.keyCode === _consts.keyCodes.SPACE) {
+      //   e.preventDefault();
+      //   this.withSpace = true;
+      //   this.startHandMode();
+      // }
     }
 
     /**
