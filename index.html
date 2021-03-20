@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>0. Design</title>
+    <title>CompuPandit</title>
     <link
       type="text/css"
       href="./dist/tui-color-picker.css"
@@ -22,6 +22,12 @@
   <body>
     <div id="tui-image-editor-container"></div>
     <a href="./mobile.html" class="swith_button"> Mobile </a>
+    <button href="#" class="single swith_button" onclick="singleImage('single')">1</button>
+    <button href="#" class="double swith_button" onclick="singleImage('double')">2</button>
+    <button href="#" class="tripal swith_button" onclick="singleImage('tripal')">3</button>
+    <button href="#" class="mrng swith_button" onclick="setHeader('Morning', 170)">Morning</button>
+    <button href="#" class="noon swith_button" onclick="setHeader('Noon', 190)">Noon</button>
+    <button href="#" class="evening swith_button" onclick="setHeader('Evening', 180)">Evening</button>
     <script
       type="text/javascript"
       src="./dist/fabric-v4.2.0.js"
@@ -42,24 +48,81 @@
     <script type="text/javascript" src="js/theme/white-theme.js"></script>
     <script type="text/javascript" src="js/theme/black-theme.js"></script>
     <script>
+      const dateObj = new Date();
       var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
         includeUI: {
           loadImage: {
-            path: 'img/sampleImage.png',
+            path: 'img/tripal.png',
             name: 'News',
           },
           menu: ['text', 'mask'],
           theme: blackTheme,
           initMenu: 'text',
           menuBarPosition: 'left',
+          
         },
         cssMaxWidth: 700,
         cssMaxHeight: 500,
         usageStatistics: false,
       });
-      window.onresize = function () {
-        imageEditor.ui.resizeEditor();
-      };
+      setDateOnLayout();
+      
+      function singleImage(name) {
+        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png', "News.jpg").then(function (sizeValue) {
+        })['catch'](function (message) {
+          return Promise.reject(message);
+        });
+        setDateOnLayout();
+      }
+
+      function getDate() {
+        const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+        "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        const dateObj = new Date();
+        const month = monthNames[dateObj.getMonth()];
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const year = dateObj.getFullYear();
+        var hours = dateObj.getHours();
+        var minutes = dateObj.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        return day + ' ' + month  + ',' + year + ' ' + hours + ':' + minutes + ' ' + ampm;
+      }
+
+      function setDateOnLayout() {
+        setTimeout(() => { imageEditor.addText(getDate(), {
+          styles: {
+            fill: '#545454',
+            fontSize: 28,
+            fontFamily: 'Noto Sans'
+          },
+          position: {
+              x: 390,
+              y: 20
+          }
+      }).then(objectProps => {
+          console.log(objectProps.id);
+      });}, 100);
+      }
+
+      function setHeader(title, x) {
+        setTimeout(() => { imageEditor.addText(title + ' Updates', {
+          styles: {
+            fill: '#2a2a2a',
+            fontSize: 50,
+            fontWeight: 'bold',
+            fontFamily: 'Noto Sans'
+          },
+          position: {
+              x: x,
+              y: 140
+          }
+      }).then(objectProps => {
+          console.log(objectProps.id);
+      });}, 100);
+      }
     </script>
   </body>
 </html>

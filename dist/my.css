@@ -12,3 +12,22 @@
   text-decoration: none;
   left: 70px;
 }
+
+.single {
+  left: 250px;
+}
+.double {
+  left: 300px;
+}
+.tripal {
+  left: 350px;
+}
+.mrng {
+  left: 400px;
+}
+.noon {
+  left: 480px;
+}
+.evening {
+  left: 545px;
+}
