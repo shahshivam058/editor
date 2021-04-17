@@ -25,11 +25,12 @@
     <button href="#" class="single swith_button" onclick="singleImage('single')">1</button>
     <button href="#" class="double swith_button" onclick="singleImage('double')">2</button>
     <button href="#" class="tripal swith_button" onclick="singleImage('tripal')">3</button>
-    <button href="#" class="mrng swith_button" onclick="setHeader('Morning Updates', 170)">Morning</button>
+    <button href="#" class="mrng swith_button" onclick="setHeader('Morning Updates', 160)">Morning</button>
     <button href="#" class="noon swith_button" onclick="setHeader('Noon Updates', 190)">Noon</button>
-    <button href="#" class="evening swith_button" onclick="setHeader('Evening Updates', 180)">Evening</button>
+    <button href="#" class="evening swith_button" onclick="setHeader('Evening Updates', 160)">Evening</button>
     <button href="#" class="breaking swith_button" onclick="setHeader('Breaking News', 190)">Breaking</button>
     <button href="#" class="header swith_button" onclick="setHeader('', 190)">Header</button>
+    <button href="#" class="corona swith_button" onclick="setHeader('Corona Updates', 170)">Corona</button>
     <script
       type="text/javascript"
       src="./dist/fabric-v4.2.0.js"
@@ -57,7 +58,7 @@
             path: 'img/tripal.png',
             name: 'News',
           },
-          menu: ['text', 'mask'],
+          // menu: ['text', 'mask'],
           theme: blackTheme,
           initMenu: 'text',
           menuBarPosition: 'left',
@@ -70,7 +71,7 @@
       setDateOnLayout();
       
       function singleImage(name) {
-        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png', "News.jpg").then(function (sizeValue) {
+        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png', "News.png").then(function (sizeValue) {
         })['catch'](function (message) {
           return Promise.reject(message);
         });
@@ -119,7 +120,7 @@
           },
           position: {
               x: x,
-              y: 140
+              y: 160
           }
       }).then(objectProps => {
           console.log(objectProps.id);
