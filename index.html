@@ -55,7 +55,7 @@
       var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
         includeUI: {
           loadImage: {
-            path: 'img/tripal.png',
+            path: 'img/tripal.png?unique='+Date.now(),
             name: 'News',
           },
           // menu: ['text', 'mask'],
@@ -71,7 +71,7 @@
       setDateOnLayout();
       
       function singleImage(name) {
-        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png', "News.png").then(function (sizeValue) {
+        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png?unique='+Date.now(), "News.png").then(function (sizeValue) {
         })['catch'](function (message) {
           return Promise.reject(message);
         });
