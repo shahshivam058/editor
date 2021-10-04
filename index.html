@@ -71,7 +71,11 @@
       setDateOnLayout();
       
       function singleImage(name) {
-        imageEditor.loadImageFromURL('http://localhost/news/img/'+name+'.png?unique='+Date.now(), "News.png").then(function (sizeValue) {
+        var url = "http://editor.compupandit.in";
+        if (window.location.href.includes("localhost")) {
+            url = "http://localhost/news";
+        }
+        imageEditor.loadImageFromURL(url+'/img/'+name+'.png?unique='+Date.now(), "News.png").then(function (sizeValue) {
         })['catch'](function (message) {
           return Promise.reject(message);
         });
