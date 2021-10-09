@@ -24,13 +24,13 @@
     <a href="./mobile.html" class="swith_button"> Mobile </a>
     <button href="#" class="single swith_button" onclick="singleImage('single')">1</button>
     <button href="#" class="double swith_button" onclick="singleImage('double')">2</button>
-    <button href="#" class="tripal swith_button" onclick="singleImage('tripal')">3</button>
-    <button href="#" class="marketing swith_button" onclick="singleImage('marketing')">Marketing</button>
-    <button href="#" class="mrng swith_button" onclick="setHeader('Morning Updates', 160)">Morning</button>
-    <button href="#" class="noon swith_button" onclick="setHeader('Noon Updates', 190)">Noon</button>
-    <button href="#" class="evening swith_button" onclick="setHeader('Evening Updates', 160)">Evening</button>
-    <button href="#" class="breaking swith_button" onclick="setHeader('Breaking News', 190)">Breaking</button>
-    <button href="#" class="header swith_button" onclick="setHeader('', 190)">Header</button>
+    <button href="#" class="tripal swith_button" onclick="singleImage('triple_logo')">3</button>
+    <button href="#" class="header swith_button" onclick="singleImage('triple_logo')">Marketing</button>
+    <button href="#" class="mrng swith_button" onclick="setHeader('Morning Updates', 285)">Morning</button>
+    <button href="#" class="noon swith_button" onclick="setHeader('Noon Updates', 310)">Noon</button>
+    <button href="#" class="evening swith_button" onclick="setHeader('Evening Updates', 290)">Evening</button>
+    <button href="#" class="breaking swith_button" onclick="setHeader('Breaking News', 310)">Breaking</button>
+    <!-- <button href="#" class="header swith_button" onclick="setHeader('', 310)">Header</button> -->
     <script
       type="text/javascript"
       src="./dist/fabric-v4.2.0.js"
@@ -55,20 +55,21 @@
       var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
         includeUI: {
           loadImage: {
-            path: 'img/tripal.png?unique='+Date.now(),
+            path: 'img/triple_logo.png?unique='+Date.now(),
             name: 'News',
           },
           // menu: ['text', 'mask'],
           theme: blackTheme,
           initMenu: 'text',
           menuBarPosition: 'left',
-          
         },
         cssMaxWidth: 700,
         cssMaxHeight: 500,
         usageStatistics: false,
       });
       setDateOnLayout();
+      setTimeonLayout();
+      
       
       function singleImage(name) {
         var url = "http://editor.compupandit.in";
@@ -80,6 +81,7 @@
           return Promise.reject(message);
         });
         setDateOnLayout();
+        setTimeonLayout();
       }
 
       function getDate() {
@@ -95,19 +97,49 @@
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0'+minutes : minutes;
-        return day + ' ' + month  + ',' + year + ' ' + hours + ':' + minutes + ' ' + ampm;
+        // return day + ' ' + month  + ',' + year + ' ' + hours + ':' + minutes + ' ' + ampm;
+        return day + ' ' + month  + ', ' + year;
+      }
+      function getTime() {
+        const dateObj = new Date();
+        var hours = dateObj.getHours();
+        var minutes = dateObj.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        return hours + ':' + minutes + ' ' + ampm;
       }
 
       function setDateOnLayout() {
         setTimeout(() => { imageEditor.addText(getDate(), {
           styles: {
-            fill: '#545454',
-            fontSize: 28,
+            fill: '#d2d2d2',
+            fontSize: 26,
+            fontWeight: 'bold',
             fontFamily: 'Noto Sans'
           },
+          autofocus: false,
           position: {
-              x: 390,
-              y: 20
+              x: 55,
+              y: 40
+          }
+      }).then(objectProps => {
+          console.log(objectProps.id);
+      });}, 100);
+      }
+      function setTimeonLayout() {
+        setTimeout(() => { imageEditor.addText(getTime(), {
+          styles: {
+            fill: '#d2d2d2',
+            fontSize: 26,
+            fontWeight: 'bold',
+            fontFamily: 'Noto Sans',
+          },
+          autofocus: false,
+          position: {
+              x: 75,
+              y: 70
           }
       }).then(objectProps => {
           console.log(objectProps.id);
@@ -117,14 +149,15 @@
       function setHeader(title, x) {
         setTimeout(() => { imageEditor.addText(title, {
           styles: {
-            fill: '#2a2a2a',
-            fontSize: 50,
+            fill: '#d2d2d2',
+            fontSize: 40,
             fontWeight: 'bold',
             fontFamily: 'Noto Sans'
           },
+          autofocus: false,
           position: {
               x: x,
-              y: 110
+              y: 43
           }
       }).then(objectProps => {
           console.log(objectProps.id);
