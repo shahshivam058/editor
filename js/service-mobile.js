@@ -595,6 +595,6 @@ shapeColorpicker.on('selectColor', function (event) {
 });
 
 // Load sample image
-imageEditor.loadImageFromURL('img/sampleImage.png', 'SampleImage').then(function () {
+imageEditor.loadImageFromURL('img/triple_logo.png', 'SampleImage').then(function () {
   imageEditor.clearUndoStack();
 });
