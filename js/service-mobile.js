@@ -395,13 +395,17 @@ iconColorpicker.on('selectColor', function (event) {
 
 // Text menu action
 $btnAddText.on('click', function () {
-  var initText = 'DoubleClick';
+  var initText = '';
 
   imageEditor.startDrawingMode('TEXT');
   imageEditor.addText(initText, {
     styles: {
       fontSize: parseInt($inputTextSizeRange.val(), 10),
     },
+    position: {
+        x: 60,
+        y: 140
+    }
   });
 });
 
